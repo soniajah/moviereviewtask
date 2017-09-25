@@ -10,10 +10,9 @@ def index(request):
 
 def getmovies(request):
     data = []
-    mov_length = len(Movies.objects.all())
-    for mov_id in range(1, mov_length):
-        q = Movies.objects.get(id=mov_id)
-        data.append({'ID': q.id, 'Title': q.Title, 'Description': q.Description})
+    q = Movies.objects.all()
+    for i in q:
+        data.append({'ID': i.id, 'Title': i.Title, 'Description': i.Description})
     return HttpResponse(json.dumps(data), content_type='application/json')
 
 def getmoviereviews(request, question_id):
